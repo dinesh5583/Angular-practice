@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row p-5">
+    <div class="col-md-12">
+      <a routerLink='/'>Home |</a>
+      <a [routerLink]="['user',1]"> User 1 |</a>
+      <a [routerLink]="['user',2]"> User 2 |</a>
+    </div>
+  </div>
+  <p *ngIf="userActivated">Activated</p>
+  <hr>
+  <div class="row pl-5">
+    <div class="col-md-12">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

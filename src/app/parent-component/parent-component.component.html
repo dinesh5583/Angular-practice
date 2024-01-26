@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <app-child2-component (aliasCreated)='onAdded($event)'></app-child2-component>
+  </div>
+    <div class="col-md-6">
+        <app-child-component *ngFor="let element of Data" [dataElement]='element'>
+          <p><strong>{{element.name}}</strong>
+            <b>{{element.branch}}</b></p>
+        </app-child-component>
+    </div>
+  </div>
+</div>

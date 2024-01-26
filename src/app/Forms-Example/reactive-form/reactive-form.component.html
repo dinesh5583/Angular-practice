@@ -1,0 +1,126 @@
+<div class="container p-5">
+  <div class="row">
+    <div class="col-md-12">
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div class="user-data" formGroupName="userData">
+          <!--Group Input-->
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              class="form-control"
+              formControlName="username"
+            />
+            <span
+              class="help-block text-danger"
+              *ngIf="
+                !signupForm.get('userData.username')?.valid &&
+                signupForm.get('userData.username')?.touched
+              "
+              ><span
+                *ngIf="
+                  signupForm.get('userData.username')?.errors?.nameIsForbidden
+                "
+              > This name is invalid</span>
+              <span
+                *ngIf="
+                  signupForm.get('userData.username')?.errors?.required
+                "
+              > This field is required</span>
+              </span
+            >
+          </div>
+          <!-- <button class="btn btn-primary btn-sm" type="button" (click)="suggestUserName()">
+            Suggest an Username
+          </button> -->
+          <div class="form-group">
+            <label for="email">Mail</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              formControlName="email"
+              class="form-control"
+            />
+            <span
+              class="help-block text-danger"
+              *ngIf="
+                !signupForm.get('userData.email')?.valid &&
+                signupForm.get('userData.email')?.touched
+              "
+              >Please enter a valid email</span
+            >
+          </div>
+        </div>
+        <!-- <div class="form-group">
+          <label for="secret">secret Questions</label>
+          <select
+            name="secret"
+            id="secret"
+            class="form-control"
+            [ngModel]="defaultQuestion"
+          >
+            <option value="pet">Your fisrt pet?</option>
+            <option value="teacher">Your first teacher?</option>
+          </select>
+        </div> -->
+        <!-- <div class="form-group">
+          <label for="username">Answer</label>
+          <textarea name="questionAnswer" id="" rows="3" [(ngModel)]='answer' class='form-control'></textarea>
+        </div> -->
+        <!-- <p>Your reply :{{answer}}</p> -->
+        <div class="radio" *ngFor="let gender of genders">
+          <label>
+            <input
+              type="radio"
+              formControlName="gender"
+              name="gender"
+              [value]="gender"
+            />
+            {{ gender }}
+          </label>
+        </div>
+        <div formArrayName="hobbies">
+          <h4>Your Hobbies</h4>
+          <button
+            type="button"
+            class="btn btn-sm btn-success m-3"
+            (click)="onAddHobby()"
+          >
+            Add Hobby
+          </button>
+          <div
+            class="form-group"
+            *ngFor="let hobbyControl of formControl.controls; let i = index"
+          >
+            <input
+              type="text"
+              name=""
+              id=""
+              class="form-control"
+              [formControlName]="i"
+            />
+          </div>
+        </div>
+        <p *ngIf="!signupForm.valid && signupForm.touched" class="text-danger">
+          *User data is invalid
+        </p>
+
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </form>
+      <hr />
+    </div>
+  </div>
+  <!-- <div class="row" *ngIf="submitted">
+    <div class="col-md-12">
+      <h3>Your Data</h3>
+      <p>Username: {{user.username}}</p>
+      <p>Mail: {{user.email}}</p>
+      <p>Secret Question: {{user.secret}}</p>
+      <p>Answer: {{user.questionAnswer}}</p>
+      <p>Gender: {{user.gender}}</p>
+    </div>
+  </div> -->
+</div>
